@@ -372,7 +372,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 150784098}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5.26, y: 0, z: 0}
+  m_LocalPosition: {x: 6.65, y: 0, z: 0}
   m_LocalScale: {x: 8.5, y: 7.21, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -564,7 +564,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.16, y: 0.16}
+  m_Size: {x: 0.1541616, y: 0.16}
   m_EdgeRadius: 0
 --- !u!212 &1135099547
 SpriteRenderer:
@@ -617,7 +617,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1135099544}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.73, y: -0.15, z: 0}
+  m_LocalPosition: {x: -6.94, y: -0.15, z: 0}
   m_LocalScale: {x: 8.5, y: 37.33, z: 1}
   m_Children:
   - {fileID: 792318070}
@@ -729,7 +729,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.0014867224, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0.049999997, y: 0.049999997, z: 0.049999997, w: 0.049999997}
     pivot: {x: 0.5, y: 0.5}
@@ -740,7 +740,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.16, y: 0.16}
+  m_Size: {x: 0.14513275, y: 0.16}
   m_EdgeRadius: 0
 --- !u!212 &1537827956
 SpriteRenderer:
@@ -793,8 +793,8 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1537827953}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.82, y: 0, z: 0}
-  m_LocalScale: {x: 8.5, y: 37.33, z: 1}
+  m_LocalPosition: {x: -0.832, y: 1.1688428e-11, z: 0}
+  m_LocalScale: {x: 8.344914, y: 37.33, z: 1}
   m_Children:
   - {fileID: 1651594177}
   - {fileID: 61505977}
@@ -918,7 +918,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1582615085}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6.92, y: 0, z: 0}
+  m_LocalPosition: {x: 2.24, y: 0.52, z: 0}
   m_LocalScale: {x: 8.5, y: 7.21, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -935,8 +935,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a31817f9b6835b49b144304437d8e69, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  finder: {fileID: 0}
-  target: {fileID: 0}
+  finder: {fileID: 1582615085}
+  target: {fileID: 150784098}
   layerName: Object
 --- !u!1 &1597662763
 GameObject:
@@ -1095,6 +1095,7 @@ GameObject:
   - component: {fileID: 2019673753}
   - component: {fileID: 2019673752}
   - component: {fileID: 2019673751}
+  - component: {fileID: 2019673755}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1164,6 +1165,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2019673755
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2019673750}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3676dc4fc88ab24b9025f6de89d672c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  layerName: 
+  nodeTag: Node
 --- !u!1 &2134549406
 GameObject:
   m_ObjectHideFlags: 0
