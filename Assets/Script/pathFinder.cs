@@ -22,6 +22,9 @@ public class pathFinder : MonoBehaviour {
 		layerMask = 1 << LayerMask.NameToLayer (layerName);
 		//Debug.Log (layerMask.value);
 	}
+
+
+
 	
 	// Update is called once per frame
 //	void Update () {
@@ -50,7 +53,27 @@ public class pathFinder : MonoBehaviour {
 		hit = Physics2D.Linecast (finder.position+finderBound, target.position,layerMask);
 
 		if(hit){
-			Debug.Log (hit.transform.name);
+			//Debug.Log (hit.transform.name);
+			if (hit.transform.name == target.name) {
+				
+				Debug.DrawLine (transform.position, hit.transform.position,Color.blue);
+			} else {
+
+
+				
+				Debug.DrawLine (transform.position, hit.transform.position,Color.red);
+				Transform[] childs = hit.transform.gameObject.GetComponentsInChildren<Transform>();
+				for (int i = 0; i < childs.Length; i++) {
+					//if(childs[i].tag.Equals("Node")){
+					Vector2 nodePos= new Vector2(childs[i].position.x,childs[i].position.y);
+					RaycastHit2D cantSee = (Physics2D.Linecast (finder.position+finderBound, childs[i].position));
+					Debug.Log(childs[i].tag);
+					if(childs[i].CompareTag("Node")&& !cantSee){
+						Debug.DrawLine (finder.position, childs[i].transform.position, Color.cyan);
+					}
+				}
+			
+			}
 
 			}
 		}
