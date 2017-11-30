@@ -10,6 +10,7 @@ public class NodeControl : MonoBehaviour {
 	public string nodeTag;
 	private LayerMask layerMask;
 	private RaycastHit2D hit;
+	Camera mainCamera;
 
 	class Point{
 
@@ -87,7 +88,7 @@ public class NodeControl : MonoBehaviour {
 
 
 	public List<Vector2> Path(GameObject finder, GameObject target, string _layerName){
-		Debug.Log ("Finding Path............");
+		//Debug.Log ("Finding Path............");
 		this.layerName = _layerName;
 		finderBound = new Vector2 (finder.GetComponent<BoxCollider2D> ().bounds.extents.x+0.1f, finder.GetComponent<BoxCollider2D> ().bounds.extents.y+0.1f);
 //		startPos = finder.GetComponent<Rigidbody2D>().position;
@@ -138,8 +139,10 @@ public class NodeControl : MonoBehaviour {
 		List<Point> points = new List<Point> ();
 
 		foreach (GameObject node in nodes) {
-			Point currNode = new Point (node.transform.position);
-			points.Add(currNode);
+			if (isInCameraBound (node.transform.position) ){
+				Point currNode = new Point (node.transform.position);
+				points.Add (currNode);
+			}
 		
 		}
 
@@ -166,7 +169,7 @@ public class NodeControl : MonoBehaviour {
 			{
 
 
-				Debug.Log("I Hit With:......."+hitEndNode.collider.name+" My Pos:"+ point.GetPos().x+":"+point.GetPos().y);
+				//Debug.Log("I Hit With:......."+hitEndNode.collider.name+" My Pos:"+ point.GetPos().x+":"+point.GetPos().y);
 
 
 					Debug.DrawLine(targetPos,point.GetPos(), Color.white);
@@ -179,11 +182,11 @@ public class NodeControl : MonoBehaviour {
 			if (hitStartNode.collider.CompareTag(finder.gameObject.tag) && hitStartNode)
 			{
 
-				float distance = Vector2.Distance(startPos, point.GetPos());
-				Debug.Log("I Hit With:......."+hitStartNode.collider.name+" My Pos:"+ point.GetPos().x+":"+point.GetPos().y);
+				float distance = Vector2.Distance( point.GetPos(), startPos);
+				//Debug.Log("I Hit With:......."+hitStartNode.collider.name+" My Pos:"+ point.GetPos().x+":"+point.GetPos().y);
 
 				if(hitStartNode.collider.gameObject == finder.gameObject){
-					Debug.DrawLine(startPos,point.GetPos(), Color.white);
+					Debug.DrawLine(point.GetPos(), startPos,Color.white);
 
 					Point startPoint = new Point(startPos, 's');
 					point.SetPrevPoint(startPoint);
@@ -320,6 +323,34 @@ public class NodeControl : MonoBehaviour {
 		}
 	}
 
+	private bool isInCameraBound(Vector3 pos){
+		mainCamera = Camera.main;
+		float gridSizeX = Mathf.RoundToInt(mainCamera.aspect * 2f * mainCamera.orthographicSize);
+		float gridSizeY = Mathf.RoundToInt(2f * mainCamera.orthographicSize);
 
+
+
+		float topBound = mainCamera.transform.position.y + gridSizeY;
+		float bottomBound = mainCamera.transform.position.y - gridSizeY;
+		float leftBound = mainCamera.transform.position.x - gridSizeX;
+		float rightBound = mainCamera.transform.position.x + gridSizeX;
+
+		//Vector3 distance = mainCamera.transform.position + pos;
+
+		Debug.Log ("topBound: "+topBound+" bottomBound: "+bottomBound+" leftBound: "+leftBound+" rightBound: "+rightBound);
+		Debug.Log ("Cam:"+ mainCamera.transform.position.x+":"+mainCamera.transform.position.y);
+
+		Debug.Log ("Pos:"+ pos.x+":"+pos.y);
+
+		if (pos.x > leftBound && pos.x < rightBound && pos.y < topBound && pos.y > bottomBound) {
+			Debug.Log ("InBound"+pos.x+":"+pos.y);
+			return true;
+		} else {
+			return false;
+		}
+
+
+
+	}
 
 }
